@@ -1,0 +1,53 @@
+
+{{#haschildren}}
+	<div class="menu-sub menu-sub-accordion {{#isactive}}hover show{{/isactive}}">
+		<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+			<span class="menu-link">
+				<span class="menu-title">{{{text}}}</span>
+				<span class="menu-arrow"></span>
+			</span>
+			<div class="menu-sub menu-sub-accordion menu-active-bg">
+				{{#children}}
+				<div class="menu-item">
+                    {{#is_action_link}}
+					<a class="menu-link" href="{{{url}}}{{{action}}}" {{#actionattributes}}{{name}}="{{value}}" {{/actionattributes}}>
+						<span class="menu-icon">
+							<i class="hokage-menu-icon"></i>
+						</span>
+						<span class="menu-title">{{{text}}}</span>
+					</a>
+					{{/is_action_link}}
+					{{^is_action_link}}
+					<a class="menu-link" href="{{{url}}}">
+						<span class="menu-icon">
+							<i class="hokage-menu-icon"></i>
+						</span>
+						<span class="menu-title">{{{text}}}</span>
+					</a>
+					{{/is_action_link}}
+				</div>
+				{{/children}}
+			</div>
+		</div>
+	</div>
+{{/haschildren}}
+{{^haschildren}}
+	<div class="menu-item">
+		{{#is_action_link}}
+		<a class="menu-link" href="{{{url}}}{{{action}}}" {{#actionattributes}}{{name}}="{{value}}" {{/actionattributes}}>
+			<span class="menu-icon">
+				<i class="hokage-menu-icon"></i>
+			</span>
+			<span class="menu-title">{{{text}}}</span>
+		</a>
+		{{/is_action_link}}
+		{{^is_action_link}}
+		<a class="menu-link" href="{{{url}}}">
+			<span class="menu-icon">
+				<i class="hokage-menu-icon"></i>
+			</span>
+			<span class="menu-title">{{{text}}}</span>
+		</a>
+		{{/is_action_link}}
+	</div>
+{{/haschildren}}

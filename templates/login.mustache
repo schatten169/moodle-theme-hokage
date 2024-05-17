@@ -1,0 +1,35 @@
+
+{{> theme_hokage/head_custom }}
+
+<body id="kt_body" class="auth-bg bgi-size-cover bgi-attachment-fixed bgi-position-center bgi-no-repeat">
+
+<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
+
+<div class="d-flex flex-column flex-root">
+	<style>body { background-image: url('{{{ output.asset_path }}}/media/auth/bg4.jpg'); } [data-bs-theme="dark"] body { background-image: url('{{{ output.asset_path }}}/media/auth/bg4-dark.jpg'); }</style>
+	<div class="d-flex flex-column flex-column-fluid flex-lg-row">
+		<div class="d-flex flex-center w-lg-50 pt-15 pt-lg-0 px-10">
+			<div class="d-flex flex-center flex-lg-start flex-column">
+				<a href="/" class="mb-7">
+					<img alt="Logo" src="{{{ output.asset_path }}}/media/logos/custom-3.svg" />
+				</a>
+				<h2 class="text-white fw-normal m-0">Branding tools designed for your business</h2>
+			</div>
+		</div>
+		{{{ output.main_content }}}
+		{{{ output.standard_after_main_region_html }}}
+	</div>
+	<script>var hostUrl = "{{{ output.asset_path }}}/";</script>
+    <script src="{{{ output.asset_path }}}/plugins/jquery/jquery-3.7.1.min.js"></script>
+	<script src="{{{ output.asset_path }}}/plugins/global/plugins.bundle.js"></script>
+	<script src="{{{ output.asset_path }}}/js/scripts.bundle.js"></script>
+	<script src="{{{ output.asset_path }}}/js/custom/authentication/sign-in/general.js"></script>
+	</body>
+</html>
+
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader'], function() {
+  M.util.js_complete('theme_boost/loader');
+});
+{{/js}}

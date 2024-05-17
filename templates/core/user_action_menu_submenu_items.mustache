@@ -1,0 +1,8 @@
+{{#items}}
+    {{#link}}
+        <div class="menu-item px-3">
+            <a href="{{{url}}}" class="menu-link px-5" role="menuitem" tabindex="-1" {{#isactive}}aria-current="true"{{/isactive}}
+            {{#attributes}}{{key}}="{{value}}" {{/attributes}}>{{text}}</a>
+        </div>
+    {{/link}}
+{{/items}}

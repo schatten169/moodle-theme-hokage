@@ -1,0 +1,50 @@
+
+{{> theme_hokage/head }}
+
+<body id="kt_body" class="header-tablet-and-mobile-fixed aside-enabled">
+
+<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
+
+<div class="d-flex flex-column flex-root">
+    <div class="page d-flex flex-row flex-column-fluid">
+        {{> theme_hokage/sidebar }}
+    </div>
+</div>
+
+<div id="kt-wrapper" class="wrapper d-flex flex-column flex-row-fluid">
+
+    <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+    {{> theme_hokage/navbar }}
+
+    {{{ output.main_content }}}
+    </div>
+    
+    {{> theme_hokage/footer }}
+    </div>
+
+    {{{ output.standard_after_main_region_html }}}
+    
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true"></div>
+
+    <script>var hostUrl = "{{{ output.asset_path }}}/";</script>
+    <script src="{{{ output.asset_path }}}/plugins/global/plugins.bundle.js"></script>
+    <script src="{{{ output.asset_path }}}/js/scripts.bundle.js"></script>
+    <script src="{{{ output.asset_path }}}/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="{{{ output.asset_path }}}/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="{{{ output.asset_path }}}/js/widgets.bundle.js"></script>
+    <script src="{{{ output.asset_path }}}/js/custom/widgets.js"></script>
+    <script src="{{{ output.asset_path }}}/js/custom/apps/chat/chat.js"></script>
+    <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/create-campaign.js"></script>
+    <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/create-app.js"></script>
+    <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/users-search.js"></script>
+</body>
+</html>
+
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
+    Drawer.init();
+    M.util.js_complete('theme_boost/loader');
+});
+{{/js}}
