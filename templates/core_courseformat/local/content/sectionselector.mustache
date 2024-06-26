@@ -1,0 +1,22 @@
+{{!
+    Template ini digunakan untuk menampilkan next, previous.
+}}
+<div class="section-navigation mdl-bottom d-flex justify-content-between">
+    <div class="prevsection">
+        {{#hasprevious}}
+        <a href="{{{previousurl}}}" class="btn btn-sm btn-outline btn-outline-primary{{#previoushidden}} dimmed_text{{/previoushidden}}">
+            <span class="larrow">{{{larrow}}}</span>{{{previousname}}}
+        </a>
+        {{/hasprevious}}
+    </div>
+    <div>
+        {{{selector}}}
+    </div>
+    <div class="nextsection">
+        {{#hasnext}}
+        <a href="{{{nexturl}}}" class="btn btn-sm btn-outline btn-outline-primary{{#nexthidden}} dimmed_text{{/nexthidden}}">
+            <span class="rarrow">{{{rarrow}}}</span>{{{nextname}}}
+        </a>
+        {{/hasnext}}
+    </div>
+</div>

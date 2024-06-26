@@ -1,0 +1,12 @@
+
+{{!
+    Template yang digunakan untuk menampilkan course dalam bentuk card.
+    Ini parentnya, nanti manggil card sebanyak jumlah #courses
+}}
+<div class="card-grid mx-0 row row-cols-1 row-cols-sm-2 row-cols-md-3 {{$classes}}{{/classes}}" data-region="card-deck" role="list">
+{{#courses}}
+    <div class="col d-flex px-0 mb-2">
+        {{> core_course/coursecard }}
+    </div>
+{{/courses}}
+</div>

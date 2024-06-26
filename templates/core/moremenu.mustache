@@ -1,5 +1,8 @@
-<nav class="moremenu navigation">
-    <ul id="moremenu-{{moremenuid}}-{{navbarstyle}}" role="{{#istablist}}tablist{{/istablist}}{{^istablist}}menubar{{/istablist}}" class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fw-bold mt-5">
+{{! 
+    Template digunakan untuk menampilkan menu tambahan dibawah judul halaman, misalnya di menu Site Administrator, termasuk more menu (tampil kalau kepanjangan)
+}}
+<nav class="navigation bg-opacity-0 border-0">
+    <ul id="moremenu-{{moremenuid}}" role="{{#istablist}}tablist{{/istablist}}{{^istablist}}menubar{{/istablist}}" class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fw-bold mt-5">
         {{#nodecollection}}
             {{#children}}
                 {{> core/moremenu_children }}
@@ -8,9 +11,9 @@
         {{#nodearray}}
             {{> core/moremenu_children }}
         {{/nodearray}}
-        <li role="none" class="nav-item mt-2 dropdown dropdownmoremenu d-none" data-region="morebutton">
+        <li role="none" class="nav-item dropdown dropdownmoremenu d-none" data-region="morebutton">
             <a class="dropdown-toggle nav-link ms-0 me-10 py-5 {{#isactive}}text-active-primary active{{/isactive}}" href="#" id="moremenu-dropdown-{{moremenuid}}" role="{{#istablist}}tab{{/istablist}}{{^istablist}}menuitem{{/istablist}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="-1">
-                {{#str}}moremenu, core{{/str}}
+                {{#str}} moremenu, theme_hokage {{/str}}
             </a>
             <ul class="dropdown-menu dropdown-menu-left" data-region="moredropdown" aria-labelledby="moremenu-dropdown-{{moremenuid}}" role="menu">
             </ul>
@@ -20,6 +23,6 @@
 
 {{#js}}
     require(['core/moremenu'], function(moremenu) {
-        moremenu(document.querySelector('#moremenu-{{moremenuid}}-{{navbarstyle}}'));
+        moremenu(document.querySelector('#moremenu-{{moremenuid}}'));
     });
 {{/js}}

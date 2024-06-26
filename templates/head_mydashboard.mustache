@@ -1,0 +1,22 @@
+{{! 
+    Template yang digunakan untuk bagian kepala/head dari setiap page
+    - Template ini original, namun sudah ditambahkan css metronic
+}}
+{{{ output.doctype }}}
+<html {{{ output.htmlattributes }}} translate="no">
+<head>
+    <title>{{{ output.page_title }}}</title>
+    {{{ output.standard_head_html }}}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <link rel="shortcut icon" href="{{{ output.favicon }}}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <link href="{{{ output.asset_path }}}/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{{{ output.asset_path }}}/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{{{ output.asset_path }}}/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{{{ output.asset_path }}}/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{{{ output.asset_path }}}/css/fix.css" rel="stylesheet" type="text/css" />
+    <link href="{{{ output.asset_path }}}/css/mydashboard-fix.css" rel="stylesheet" type="text/css" />
+    <script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
+</head>

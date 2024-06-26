@@ -1,0 +1,14 @@
+{{!
+    Template ini digunakan untuk control di sebelah atas (search) pada
+    bagian block myoverview. Biasanya terdapat di halaman my dashboard.
+}}
+<div class="ms-md-auto">
+    {{< core/search_input_auto }}
+        {{$label}}{{#str}}
+            searchcourses, block_myoverview
+        {{/str}}{{/label}}
+        {{$placeholder}}{{#str}}
+            search, core
+        {{/str}}{{/placeholder}}
+    {{/ core/search_input_auto }}
+</div>

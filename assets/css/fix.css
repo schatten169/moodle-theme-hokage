@@ -1,0 +1,70 @@
+/* Memperbaiki trouble metronic & moodle */
+.header.header-bg {
+	z-index: 1001;
+}
+.app-content .app-content-menu {
+	border-radius: 30px 30px 0px 0px;
+}
+/* Search Highlight */
+.highlight {
+	background: var(--bs-gray-300);
+	border-radius: 0;
+	padding: 0;
+}
+/* Dropdown */
+.dropdown-toggle::after {
+	font-size: inherit;
+	width: fit-content;
+}
+.dropdown-item[aria-current=true]::before {
+	position: inherit;
+	left: 0;
+	margin-right: .75em;
+}
+.dropdown-item[aria-current=true], .dropdown-item[aria-selected=true] {
+	color: var(--bs-dropdown-link-active-color);
+	background-color: var(--bs-dropdown-link-active-bg);
+}
+.dropdown ul.dropdown-menu {
+	transform: translate(0px, 40px) !important;
+}
+/* Form */
+.form-control {
+    min-height: calc(1.5em + 1.1rem + 2px) !important;
+    padding: .55rem .75rem !important;
+    font-size: .95rem !important;
+    border-radius: .45rem !important;
+}
+.simplesearchform input {
+    border-top-left-radius: .45rem !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-left-radius: .45rem !important;
+    border-bottom-right-radius: 0 !important;
+}
+/* Table */
+table {
+	display: block !important;
+	width: 100% !important;
+	overflow-x: auto !important;
+	padding: 0 !important;
+}
+.table-bordered{
+	border: 0;
+}
+.userlist table#participants {
+	margin-top: .75em;
+}
+.userlist table#participants th.header.c1 {
+	align-items: center !important;
+	column-gap: .2em;
+	display: flex !important;
+	flex-direction: row !important;
+	flex-wrap: wrap !important;
+}
+/* Lain-lain */
+.aside {
+	z-index: 1002 !important;
+}
+.commands {
+	width: 100%;
+}

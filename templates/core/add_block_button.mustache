@@ -1,0 +1,16 @@
+{{!
+    ???
+}}
+<div class="add_block_button px-5">
+    <a href="{{link}}" id="addblock-{{uniqid}}" class="btn btn-outline btn-outline-primary block-add text-left mb-3" data-key="addblock"
+            data-url="{{escapedlink}}" data-blockregion="{{blockregion}}">
+        <i class="fa fa-plus py-2 mr-3" aria-hidden="true"></i>{{#str}}addblock{{/str}}
+    </a>
+</div>
+
+{{#js}}
+    // Initialise the JS for the modal window which displays the blocks available to add.
+    require(['core_block/add_modal'], function(addBlockModal) {
+        addBlockModal.init(null, '{{pagehash}}');
+    });
+{{/js}}

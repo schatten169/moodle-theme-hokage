@@ -1,0 +1,22 @@
+{{!
+    Template untuk navigasi di bawah content
+}}
+<div class="mt-5 mb-1 activity-navigation container-fluid">
+{{< core/columns-1to1to1}}
+    {{$column1}}
+        <div class="float-left">
+            {{#prevlink}}{{> core/action_link }}{{/prevlink}}
+        </div>
+    {{/column1}}
+    {{$column2}}
+        <div class="mdl-align">
+            {{#activitylist}}{{> core/url_select }}{{/activitylist}}
+        </div>
+    {{/column2}}
+    {{$column3}}
+        <div class="float-right">
+            {{#nextlink}}{{> core/action_link }}{{/nextlink}}
+        </div>
+    {{/column3}}
+{{/ core/columns-1to1to1}}
+</div>

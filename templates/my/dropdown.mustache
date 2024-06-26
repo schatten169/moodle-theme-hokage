@@ -1,0 +1,17 @@
+
+<div class="btn-group{{#manageurl}} course-manage{{/manageurl}}{{#courserequesturl}} course-request{{/courserequesturl}}">
+    <a href="#" class="btn btn-link btn-icon icon-size-3 rounded-circle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{{#str}}coursemanagementoptions, my{{/str}}">
+        <i class="fa fa-ellipsis-v text-dark  py-2" aria-hidden="true"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right">
+        {{#newcourseurl}}
+            <a class="dropdown-item" href="{{newcourseurl}}">{{#str}}newcourse, core{{/str}}</a>
+        {{/newcourseurl}}
+        {{#manageurl}}
+            <a class="dropdown-item" href="{{manageurl}}">{{#str}}managecourses, core{{/str}}</a>
+        {{/manageurl}}
+        {{#courserequesturl}}
+            <a class="dropdown-item" href="{{courserequesturl}}">{{#str}}requestcourse, core{{/str}}</a>
+        {{/courserequesturl}}
+    </div>
+</div>

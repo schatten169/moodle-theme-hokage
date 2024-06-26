@@ -4,6 +4,7 @@ namespace theme_hokage\output;
 
 defined('MOODLE_INTERNAL') || die;
 
+use block_contents;
 use html_writer;
 use moodle_url;
 use stdClass;
@@ -12,6 +13,20 @@ require_once($CFG->dirroot . '/course/format/lib.php');
 
 class core_renderer extends \theme_boost\output\core_renderer 
 {
+    /**
+     * Digunakan untuk ngeprint tahun yang akan ditempatkan di footer
+     */
+    public function yearnow()
+    {
+        return date('Y');
+    }
+
+    public function www_path(){
+        global $CFG;
+        
+        return $CFG->wwwroot;
+    }
+
     public function theme_path(){
         global $CFG;
 		
@@ -27,33 +42,47 @@ class core_renderer extends \theme_boost\output\core_renderer
         global $CFG;
 
         $path = $CFG->wwwroot . '/login/logout';
-        
-        if (sesskey()){
-            $path .= '?' . sesskey();
-        }
 
-        return $path;
+        return new moodle_url($path, ['sesskey' => sesskey()]);
     }
 
-    public function getStringName($stringName){
-        return get_string($stringName);
+    /**
+     * Jenis: Utility User
+     * Untuk mendapatkan nama lengkap user
+     */
+    public function getuserfullname(): string
+    {
+        global $USER;
+        $name = [
+            $USER->firstname,
+            $USER->middlename,
+            $USER->lastname,
+        ];
+        $name = array_filter($name);
+        return implode(' ', $name);
     }
 
-    public function getmail() {
-        global $DB;
-
-        $context = $this->page->context;
-
-        if ((isset($headerinfo['user']) || $context->contextlevel == CONTEXT_USER) && $this->page->pagetype !== 'my-index') {
-            if (isset($headerinfo['user'])) {
-                $user = $headerinfo['user'];
-            } else {
-                // Look up the user information if it is not supplied.
-                $user = $DB->get_record('user', array('id' => $context->instanceid));
-            }
-
-            return $user->email;
+    /**
+     * Jenis: Utility User
+     * Untuk mendapatkan role user
+     */
+    public function getuserrole(): string
+    {
+        if (is_siteadmin()) {
+            return 'Administrator';
         }
+        return 'User';
+    }
+
+    /**
+     * Jenis: Utility User
+     * Untuk mendapatkan email user
+     */
+    public function getmail()
+    {
+        global $USER;
+
+        return $USER->email;
     }
 
     public function full_header2()
@@ -217,20 +246,24 @@ class core_renderer extends \theme_boost\output\core_renderer
 
         // Generate the heading first and before everything else as we might have to do an early return.
         if (!isset($contextheader->heading)) {
-            $heading = html_writer::div($this->page->heading, 'h2 my-auto');
+            $heading = html_writer::div($this->page->heading, 'fs-2 fw-bold');
             // $heading = $this->heading($this->page->heading, $contextheader->headinglevel, 'h2');
         } else {
-            $heading = html_writer::div($contextheader->heading, 'h2 my-auto');
+            $heading = html_writer::div($contextheader->heading, 'fs-2 fw-bold mb-3');
+            // if ($this->page->pagetype == 'user-profile'){
+            //     $heading .= html_writer::div($this->getmail(), 'fs-6');
+            //     $heading .= html_writer::div('Role: '. $this->getuserrole(), 'fs-6 fw-semibold');
+            // }
             // $heading = $this->heading($contextheader->heading, $contextheader->headinglevel, 'h2');
         }
 
         // All the html stuff goes here.
-        $html = html_writer::start_div('page-context-header');
+        $html = html_writer::start_div('page-context-header w-100');
 
         // Image data.
         if (isset($contextheader->imagedata)) {
             // Header specific image.
-            $html .= html_writer::div($contextheader->imagedata, 'page-header-image mr-2');
+            $html .= html_writer::div($contextheader->imagedata, 'page-header-image me-5');
         }
 
         // Headings.
@@ -238,11 +271,11 @@ class core_renderer extends \theme_boost\output\core_renderer
             $prefix = html_writer::div($contextheader->prefix, 'text-muted text-uppercase small line-height-3');
             $heading = $prefix . $heading;
         }
-        $html .= html_writer::tag('div', $heading, array('class' => 'page-header-headings'));
+        $html .= html_writer::tag('div', $heading, array('class' => 'page-header-headings my-auto'));
 
         // Buttons.
         if (isset($contextheader->additionalbuttons)) {
-            $html .= html_writer::start_div('btn-group header-button-group ms-auto');
+            $html .= html_writer::start_div('btn-group header-button-group ms-auto my-auto');
             foreach ($contextheader->additionalbuttons as $button) {
                 if (!isset($button->page)) {
                     // Include js for messaging.
@@ -259,12 +292,44 @@ class core_renderer extends \theme_boost\output\core_renderer
                         'alt' => $button['title'],
                     ));
                 }
-                $html .= html_writer::link($button['url'], html_writer::tag('span', $image), $button['linkattributes']);
+                $html .= html_writer::link($button['url'], html_writer::tag('span', $image), ['class' => 'btn btn-sm btn-info']);
             }
             $html .= html_writer::end_div();
         }
         $html .= html_writer::end_div();
 
         return $html;
+    }
+
+    public function block(block_contents $bc, $region)
+    {
+        $bc = clone ($bc);
+        if (empty($bc->blockinstanceid) || !strip_tags($bc->title)) {
+            $bc->collapsible = block_contents::NOT_HIDEABLE;
+        }
+
+        $id = !empty($bc->attributes['id']) ? $bc->attributes['id'] : uniqid('block-');
+        $context = new stdClass();
+        $context->skipid = $bc->skipid;
+        $context->blockinstanceid = $bc->blockinstanceid ?: uniqid('fakeid-');
+        $context->dockable = $bc->dockable;
+        $context->id = $id;
+        $context->hidden = $bc->collapsible == block_contents::HIDDEN;
+        $context->skiptitle = strip_tags($bc->title);
+        $context->showskiplink = !empty($context->skiptitle);
+        $context->arialabel = $bc->arialabel;
+        $context->ariarole = !empty($bc->attributes['role']) ? $bc->attributes['role'] : 'complementary';
+        $context->class = $bc->attributes['class'];
+        $context->type = $bc->attributes['data-block'];
+        $context->title = $bc->title;
+        $context->content = $bc->content;
+        $context->annotation = $bc->annotation;
+        $context->footer = $bc->footer;
+        $context->hascontrols = !empty($bc->controls);
+        if ($context->hascontrols) {
+            $context->controls = $this->block_controls($bc->controls, $id);
+        }
+
+        return $this->render_from_template('core/block', $context);
     }
 }

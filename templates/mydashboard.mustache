@@ -1,158 +1,115 @@
-{{> theme_hokage/head }}
+{{!
+	# Main Template Layout Biasa #
+	Template ini digunakan untuk control utama tampilan dashboard dsb
+    - Mengikuti theme parentnya (boost), template ini digunakan untuk berbagai macam tampilan
+}}
+{{< theme_hokage/head }}
+    {{$ headercss }}<link href="{{{ output.asset_path }}}/css/mydashboard-fix.css" rel="stylesheet" type="text/css" />{{/ headercss }}
+{{/ theme_hokage/head }}
 
-<body {{{ bodyattributes }}} id="kt_body" class="header-tablet-and-mobile-fixed aside-enabled">
-
-<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
-
-{{> core/local/toast/wrapper }}
-
-<div class="d-flex flex-column flex-root">
-    <div class="page d-flex flex-row flex-column-fluid">
-        {{> theme_hokage/sidebar }}
-    </div>
-</div>
-
-<div id="page-wrapper" class="d-print-block">
+<body id="kt_body" data-kt-app-page-loading-enabled="true" data-kt-app-page-loading="on" {{{ bodyattributes }}}>
+    {{> core/local/toast/wrapper }}
 
     {{{ output.standard_top_of_body_html }}}
 
-    {{> theme_boost/navbar }}
+    <div class="d-flex flex-column flex-root">
+        {{^unauthenticateduser}}
+            {{> theme_hokage/sidebar }}
+        {{/unauthenticateduser}}
+        {{{ output.standard_top_of_body_html }}}
 
-    {{#courseindex}}
-        {{< theme_boost/drawer }}
-            {{$id}}theme_boost-drawers-courseindex{{/id}}
-            {{$drawerclasses}}drawer drawer-left {{#courseindexopen}}show{{/courseindexopen}}{{/drawerclasses}}
-            {{$drawercontent}}
-                {{{courseindex}}}
-            {{/drawercontent}}
-            {{$drawerpreferencename}}drawer-open-index{{/drawerpreferencename}}
-            {{$drawerstate}}show-drawer-left{{/drawerstate}}
-            {{$tooltipplacement}}right{{/tooltipplacement}}
-            {{$closebuttontext}}{{#str}}closecourseindex, core{{/str}}{{/closebuttontext}}
-        {{/ theme_boost/drawer}}
-    {{/courseindex}}
-    {{#hasblocks}}
-        {{< theme_boost/drawer }}
-            {{$id}}theme_boost-drawers-blocks{{/id}}
-            {{$drawerclasses}}drawer drawer-right{{#blockdraweropen}} show{{/blockdraweropen}}{{/drawerclasses}}
-            {{$drawercontent}}
-                <section class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
-                    {{{ addblockbutton }}}
-                    {{{ sidepreblocks }}}
-                </section>
-            {{/drawercontent}}
-            {{$drawerpreferencename}}drawer-open-block{{/drawerpreferencename}}
-            {{$forceopen}}{{#forceblockdraweropen}}1{{/forceblockdraweropen}}{{/forceopen}}
-            {{$drawerstate}}show-drawer-right{{/drawerstate}}
-            {{$tooltipplacement}}left{{/tooltipplacement}}
-            {{$drawercloseonresize}}1{{/drawercloseonresize}}
-            {{$closebuttontext}}{{#str}}closeblockdrawer, core{{/str}}{{/closebuttontext}}
-        {{/ theme_boost/drawer}}
-    {{/hasblocks}}
-    <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}}">
-        <div id="topofscroll" class="main-inner">
-            <div class="drawer-toggles d-flex">
-                {{#courseindex}}
-                    <div class="drawer-toggler drawer-left-toggle open-nav">
-                        <button
-                            class="btn icon-no-margin"
-                            data-toggler="drawers"
-                            data-action="toggle"
-                            data-target="theme_boost-drawers-courseindex"
-                            data-toggle="tooltip"
-                            data-placement="right"
-                            title="{{#str}}opendrawerindex, core{{/str}}"
-                        >
-                            <span class="sr-only">{{#str}}opendrawerindex, core{{/str}}</span>
-                            {{#pix}} t/index_drawer, moodle {{/pix}}
-                        </button>
+        <div id="kt-wrapper" class="wrapper d-flex flex-column flex-row-fluid {{#unauthenticateduser}} px-0 {{/unauthenticateduser}}">
+            {{> core/dashboard_navbar }}
+
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <div class="toolbar d-flex flex-stack" id="kt_toolbar">
+                    <div id="kt_toolbar_container" class="container">
+                        {{{ output.full_header }}}
+                        {{#secondarymoremenu}}
+                            <div class="secondary-navigation d-print-none">
+                                {{> core/moremenu }}
+                            </div>
+                        {{/secondarymoremenu}}
                     </div>
-                {{/courseindex}}
-                {{#hasblocks}}
-                    <div class="drawer-toggler drawer-right-toggle ml-auto">
-                        <button
-                            class="btn icon-no-margin"
-                            data-toggler="drawers"
-                            data-action="toggle"
-                            data-target="theme_boost-drawers-blocks"
-                            data-toggle="tooltip"
-                            data-placement="right"
-                            title="{{#str}}opendrawerblocks, core{{/str}}"
-                        >
-                            <span class="sr-only">{{#str}}opendrawerblocks, core{{/str}}</span>
-                            {{#pix}}t/blocks_drawer, core, {{#str}}opendrawerblocks, core{{/str}}{{/pix}}
-                        </button>
-                    </div>
-                {{/hasblocks}}
-            </div>
-            {{{ output.full_header }}}
-            {{#showdashboardadmin}}
-                {{> theme_trema/mydashboard_admin }}
-            {{/showdashboardadmin}}
-            {{#secondarymoremenu}}
-                <div class="secondary-navigation">
-                    {{> core/moremenu}}
                 </div>
-            {{/secondarymoremenu}}
-            <div id="page-content" class="pb-3 d-print-block">
-                <div id="region-main-box">
-                    {{#hasregionmainsettingsmenu}}
-                    <div id="region-main-settings-menu" class="d-print-none">
-                        <div> {{{ regionmainsettingsmenu }}} </div>
+                <div class="d-flex flex-column-fluid m-0" id="page" data-region="mainpage" data-usertour="scroller">
+                    <div id="kt_content_container" class="container-xxl" id="topofscroll">
+                        <div id="region-main-box">
+                            {{{ output.main_content }}}
+
+                            {{{ output.activity_navigation }}}
+                            {{{ output.course_content_footer }}}
+                        </div>
                     </div>
-                    {{/hasregionmainsettingsmenu}}
-                    <section id="region-main" aria-label="{{#str}}content{{/str}}">
-
-                        {{#hasregionmainsettingsmenu}}
-                            <div class="region_main_settings_menu_proxy"></div>
-                        {{/hasregionmainsettingsmenu}}
-                        {{{ output.course_content_header }}}
-                        {{#headercontent}}
-                            {{> core/activity_header }}
-                        {{/headercontent}}
-                        {{#overflow}}
-                            {{> core/url_select}}
-                        {{/overflow}}
-                        
-                        {{{ output.main_content }}}
-                        {{{ output.activity_navigation }}}
-                        {{{ output.course_content_footer }}}
-
-                    </section>
                 </div>
             </div>
+            
+            {{> theme_hokage/footer }}
         </div>
-        {{#hasadminblocks}}
-            <div id="side-admin-blocks" class="mt-4">
-                <div class="container py-3">
-                    <h3 class="text-center my-2">{{#str}}adminarea, theme_trema{{/str}}</h3>
-                    {{{ sideadminblocks }}}
-                </div>
-            </div>
-        {{/hasadminblocks}}
-        {{#enabletremafooter}}
-            {{> theme_trema/footer }}
-        {{/enabletremafooter}}
-        {{^enabletremafooter}}
-            {{> theme_boost/footer }}
-        {{/enabletremafooter}}
-    </div>
-    <div id="goto-top-link">
-        {{! go to top is sticky to footer so needs to be sibling }}
-        <a class="btn btn-light m-0" role="button" href="#"
-            onclick="const p = document.getElementById('page'); p.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: 'smooth'
-            });"
-            aria-label="{{#str}} totop, theme_trema {{/str}}">
-            {{#pix}} i/up, core{{/pix}}
-        </a>
-    </div>
-    {{{ output.standard_after_main_region_html }}}
+        
+        <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+            <i class="ki-duotone ki-arrow-up">
+                <span class="path1"></span>
+                <span class="path2"></span>
+            </i>
+        </div>
 
-</div>
+        {{> theme_hokage/page-loader }}
+        
+        {{#courseindex}}
+            {{< theme_boost/drawer }}
+                {{$id}}theme_boost-drawers-courseindex{{/id}}
+                {{$drawerheadercontent}}
+                    {{> theme_boost/courseindexdrawercontrols}}
+                {{/drawerheadercontent}}
+                {{$drawerclasses}}drawer drawer-start {{#courseindexopen}}drawer-on{{/courseindexopen}}{{/drawerclasses}}
+                {{$drawercontent}}
+                    {{{courseindex}}}
+                {{/drawercontent}}
+                {{$drawerpreferencename}}drawer-open-index{{/drawerpreferencename}}
+                {{$drawerstate}}show-drawer-left{{/drawerstate}}
+                {{$tooltipplacement}}right{{/tooltipplacement}}
+                {{$closebuttontext}}{{#str}}closecourseindex, core{{/str}}{{/closebuttontext}}
+            {{/ theme_boost/drawer}}
+        {{/courseindex}}
+        {{#hasblocks}}
+            {{< theme_boost/drawer }}
+                {{$id}}theme_boost-drawers-blocks{{/id}}
+                {{$drawerclasses}}drawer drawer-right{{#blockdraweropen}} show{{/blockdraweropen}}{{/drawerclasses}}
+                {{$drawercontent}}
+                    <section class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
+                        {{{ addblockbutton }}}
+                        {{{ sidepreblocks }}}
+                    </section>
+                {{/drawercontent}}
+                {{$drawerpreferencename}}drawer-open-block{{/drawerpreferencename}}
+                {{$forceopen}}{{#forceblockdraweropen}}1{{/forceblockdraweropen}}{{/forceopen}}
+                {{$drawerstate}}show-drawer-right{{/drawerstate}}
+                {{$tooltipplacement}}left{{/tooltipplacement}}
+                {{$drawercloseonresize}}1{{/drawercloseonresize}}
+                {{$closebuttontext}}{{#str}}closeblockdrawer, core{{/str}}{{/closebuttontext}}
+            {{/ theme_boost/drawer}}
+        {{/hasblocks}}
 
+        <script>var hostUrl = "{{{ output.asset_path }}}/";</script>
+        <script src="{{{ output.asset_path }}}/plugins/jquery/jquery-3.7.1.min.js"></script>
+        <script src="{{{ output.asset_path }}}/plugins/global/plugins.bundle.js"></script>
+        <script src="{{{ output.asset_path }}}/js/scripts.bundle.js"></script>
+        <script src="{{{ output.asset_path }}}/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+        <script src="{{{ output.asset_path }}}/plugins/custom/datatables/datatables.bundle.js"></script>
+        <script src="{{{ output.asset_path }}}/js/widgets.bundle.js"></script>
+        <script src="{{{ output.asset_path }}}/js/custom/widgets.js"></script>
+        <script src="{{{ output.asset_path }}}/js/custom/apps/chat/chat.js"></script>
+        <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/upgrade-plan.js"></script>
+        <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/create-campaign.js"></script>
+        <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/create-app.js"></script>
+        <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/users-search.js"></script>
+        <script src="{{{ output.asset_path }}}/js/fix.js"></script>
+        <script src="{{{ output.asset_path }}}/js/mydashboard-fix.js"></script>
+
+        {{{ output.standard_after_main_region_html }}}
+        {{{ output.standard_end_of_body_html }}}
+    </div>
 </body>
 </html>
 
@@ -162,5 +119,4 @@ require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
     Drawer.init();
     M.util.js_complete('theme_boost/loader');
 });
-require(['theme_trema/main'], (module) => module.init());
 {{/js}}

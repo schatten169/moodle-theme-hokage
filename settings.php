@@ -1,7 +1,5 @@
 <?php
-
 defined('MOODLE_INTERNAL') || die();                                                                                                
-
 if ($ADMIN->fulltree) {                                                                                                             
 
     // Boost provides a nice setting page which splits settings onto separate tabs. We want to use it here.                         

@@ -1,0 +1,20 @@
+
+{{!
+    Template untuk mengatur tampilan button satu aja (single).
+    Button satu langsung action.
+}}
+<div class="{{classes}}">
+    <form method="{{method}}" action="{{url}}" {{#formid}}id="{{formid}}"{{/formid}}>
+        {{#params}}
+            <input type="hidden" name="{{name}}" value="{{value}}">
+        {{/params}}
+        <button type="submit" class="btn btn-sm btn-{{type}}"
+            id="{{id}}"
+            {{#tooltip}}title="{{tooltip}}"{{/tooltip}}
+            {{#disabled}}disabled{{/disabled}}
+            {{#attributes}} {{name}}="{{value}}" {{/attributes}}>{{label}}</button>
+    </form>
+</div>
+{{#hasactions}}
+    {{> core/actions }}
+{{/hasactions}}

@@ -1,0 +1,38 @@
+
+{{!
+    Template digunakan untuk menampilkan pada bagian block overview page main
+}}
+
+<div id="block-myoverview-{{uniqid}}" class="block-myoverview block-cards" data-region="myoverview" role="navigation">
+    <div role="search" data-region="filter" class="d-flex align-items-center mb-5" aria-label="{{#str}} aria:controls, block_myoverview {{/str}}">
+        <div class="d-flex flex-row flex-wrap flex-fill align-items-center justify-content-center gap-2">
+            {{> block_myoverview/nav-grouping-selector }}
+
+            {{> block_myoverview/nav-sort-selector }}
+
+            {{#displaydropdown}}
+                {{> block_myoverview/nav-display-selector }}
+            {{/displaydropdown}}
+
+            {{> block_myoverview/nav-search-widget }}
+        </div>
+    </div>
+
+    <div class="pt-5">
+        {{> block_myoverview/courses-view }}
+    </div>		
+</div>
+{{#js}}
+require(
+[
+    'jquery',
+    'block_myoverview/main',
+],
+function(
+    $,
+    Main
+) {
+    var root = $('#block-myoverview-{{uniqid}}');
+    Main.init(root);
+});
+{{/js}}

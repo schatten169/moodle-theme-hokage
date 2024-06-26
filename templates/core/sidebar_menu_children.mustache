@@ -1,40 +1,42 @@
-
+{{!
+	Template digunakan untuk mengatur item child/isi dari sidebar
+}}
 {{#haschildren}}
-	<div class="menu-sub menu-sub-accordion {{#isactive}}hover show{{/isactive}}">
+	<li class="menu-sub menu-sub-accordion {{#isactive}}hover show{{/isactive}}">
 		<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-			<span class="menu-link">
-				<span class="menu-title">{{{text}}}</span>
-				<span class="menu-arrow"></span>
-			</span>
-			<div class="menu-sub menu-sub-accordion menu-active-bg">
-				{{#children}}
-				<div class="menu-item">
-                    {{#is_action_link}}
-					<a class="menu-link" href="{{{url}}}{{{action}}}" {{#actionattributes}}{{name}}="{{value}}" {{/actionattributes}}>
-						<span class="menu-icon">
-							<i class="hokage-menu-icon"></i>
-						</span>
-						<span class="menu-title">{{{text}}}</span>
-					</a>
-					{{/is_action_link}}
-					{{^is_action_link}}
-					<a class="menu-link" href="{{{url}}}">
-						<span class="menu-icon">
-							<i class="hokage-menu-icon"></i>
-						</span>
-						<span class="menu-title">{{{text}}}</span>
-					</a>
-					{{/is_action_link}}
-				</div>
-				{{/children}}
-			</div>
 		</div>
-	</div>
+		<a class="menu-link">
+			<span class="menu-title">{{{text}}}</span>
+			<span class="menu-arrow"></span>
+		</a>
+		<ul class="menu-sub menu-sub-accordion menu-active-bg">
+			{{#children}}
+			<li class="menu-item">
+				{{#is_action_link}}
+				<a class="menu-link btn btn-outline btn-outline-secondary border-0{{#isactive}} active{{/isactive}}" href="{{{url}}}{{{action}}}" {{#actionattributes}}{{name}}="{{value}}" {{/actionattributes}} {{#title}}title="{{.}}"{{/title}}>
+					<span class="menu-icon">
+						<i class="hokage-menu-icon"></i>
+					</span>
+					<span class="menu-title">{{{text}}}</span>
+				</a>
+				{{/is_action_link}}
+				{{^is_action_link}}
+				<a class="menu-link btn btn-outline btn-outline-secondary border-0{{#isactive}} active{{/isactive}}" href="{{{url}}}{{{action}}}" {{#title}}title="{{.}}"{{/title}} {{#isactive}}aria-current="true"{{/isactive}} {{^isactive}}tabindex="-1"{{/isactive}}>
+					<span class="menu-icon">
+						<i class="hokage-menu-icon"></i>
+					</span>
+					<span class="menu-title">{{{text}}}</span>
+				</a>
+				{{/is_action_link}}
+			</li>
+			{{/children}}
+		</ul>
+	</li>
 {{/haschildren}}
 {{^haschildren}}
-	<div class="menu-item">
+	<li data-key="{{key}}" class="menu-item">
 		{{#is_action_link}}
-		<a class="menu-link" href="{{{url}}}{{{action}}}" {{#actionattributes}}{{name}}="{{value}}" {{/actionattributes}}>
+		<a class="menu-link btn btn-outline btn-outline-secondary border-0{{#isactive}} active{{/isactive}}" href="{{{url}}}{{{action}}}" {{#actionattributes}}{{name}}="{{value}}" {{/actionattributes}} {{#title}}title="{{.}}"{{/title}}>
 			<span class="menu-icon">
 				<i class="hokage-menu-icon"></i>
 			</span>
@@ -42,12 +44,12 @@
 		</a>
 		{{/is_action_link}}
 		{{^is_action_link}}
-		<a class="menu-link" href="{{{url}}}">
+		<a class="menu-link btn btn-outline btn-outline-secondary border-0{{#isactive}} active{{/isactive}}" href="{{{url}}}{{{action}}}" {{#title}}title="{{.}}"{{/title}} {{#isactive}}aria-current="true"{{/isactive}} {{^isactive}}tabindex="-1"{{/isactive}}>
 			<span class="menu-icon">
 				<i class="hokage-menu-icon"></i>
 			</span>
 			<span class="menu-title">{{{text}}}</span>
 		</a>
 		{{/is_action_link}}
-	</div>
+	</li>
 {{/haschildren}}

@@ -52,4 +52,4 @@ $templatecontext = [
     'addblockbutton' => $addblockbutton,
 ];
 
-echo $OUTPUT->render_from_template('theme_hokage/dashboard', $templatecontext);
+echo $OUTPUT->render_from_template('theme_hokage/drawers', $templatecontext);

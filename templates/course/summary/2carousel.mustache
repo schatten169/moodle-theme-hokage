@@ -1,0 +1,18 @@
+{{! 
+    Template digunakan untuk menampilkan carousel pada summary halaman 'main'
+    = Parent: -
+    = Child:
+        - Coursebox_Parent
+            - Coursebox_Child
+}}
+<div class="mt-10 mb-20 container carousel" id="{{{ contentsdivid }}}" data-bs-ride="carousel">
+    <div class="text-center mb-5">
+        <div class="text-white fs-2hx fw-bold mb-5">
+            {{{ header }}}
+        </div>
+        <div class="text-gray-600 fw-semibold fs-5">
+            {{# str }} summarycourseinfo, theme_hokage {{/ str }}
+        </div>
+    </div>
+    {{{ content }}}
+</div>

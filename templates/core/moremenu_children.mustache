@@ -1,7 +1,9 @@
-
+{{! 
+    Template untuk isi (child) dari moremenu
+}}
 {{#haschildren}}
     <li class="dropdown nav-item" role="none" data-forceintomoremenu="{{#forceintomoremenu}}true{{/forceintomoremenu}}{{^forceintomoremenu}}false{{/forceintomoremenu}}">
-        <a class="dropdown-toggle nav-link ms-0 me-10 py-5 {{#isactive}}text-active-primary active{{/isactive}} {{#classes}}{{.}} {{/classes}}" id="drop-down-{{moremenuid}}" role="menuitem" data-bs-toggle="dropdown"
+        <a class="dropdown-toggle nav-link ms-0 me-5 py-3 {{#isactive}}text-active-primary active{{/isactive}} {{#classes}}{{.}} {{/classes}}" id="drop-down-{{moremenuid}}" role="menuitem" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false" href="#" aria-controls="drop-down-menu-{{moremenuid}}"
             {{#title}}title="{{.}}"{{/title}}
             {{#isactive}}aria-current="true"{{/isactive}}
@@ -42,7 +44,7 @@
     <li data-key="{{key}}" class="nav-item" role="none" data-forceintomoremenu="{{#forceintomoremenu}}true{{/forceintomoremenu}}{{^forceintomoremenu}}false{{/forceintomoremenu}}">
         {{#istablist}}
             {{#is_action_link}}
-                <a role="tab" class="nav-link ms-0 me-10 py-5 {{#classes}}{{.}} {{/classes}}" href="{{tab}}" data-bs-toggle="tab" data-text="{{{text}}}" data-disableactive="true" tabindex="-1"
+                <a role="tab" class="nav-link ms-0 me-5 py-3 {{#classes}}{{.}} {{/classes}}" href="{{tab}}" data-toggle="tab" data-text="{{{text}}}" data-disableactive="true" tabindex="-1"
                     {{#title}}title="{{.}}"{{/title}}
                 >
                     {{{text}}}
@@ -52,8 +54,8 @@
                 {{/action_link_actions}}
             {{/is_action_link}}
             {{^is_action_link}}
-                <a role="tab" class="nav-link ms-0 me-10 py-5 {{#isactive}}text-active-primary active{{/isactive}} {{#classes}}{{.}} {{/classes}}"
-                    href="{{tab}}" data-bs-toggle="tab" data-text="{{{text}}}"
+                <a role="tab" class="nav-link ms-0 me-5 py-3 {{#isactive}}text-active-primary active{{/isactive}} {{#classes}}{{.}} {{/classes}}"
+                    href="{{tab}}" data-toggle="tab" data-text="{{{text}}}"
                     {{#title}}title="{{.}}"{{/title}}
                     {{#isactive}}aria-selected="true"{{/isactive}}
                     {{^isactive}}tabindex="-1"{{/isactive}}
@@ -64,7 +66,7 @@
         {{/istablist}}
         {{^istablist}}
             {{#is_action_link}}
-                <a role="menuitem" class="nav-link ms-0 me-10 py-5 {{#classes}}{{.}} {{/classes}}" {{#actionattributes}}{{name}}="{{value}}" {{/actionattributes}} href="{{{url}}}{{{action}}}"
+                <a role="menuitem" class="nav-link ms-0 me-5 py-3 {{#classes}}{{.}} {{/classes}}" {{#actionattributes}}{{name}}="{{value}}" {{/actionattributes}} href="{{{url}}}{{{action}}}"
                     {{#title}}title="{{.}}"{{/title}}
                     data-disableactive="true" tabindex="-1"
                 >
@@ -75,7 +77,7 @@
                 {{/action_link_actions}}
             {{/is_action_link}}
             {{^is_action_link}}
-                <a role="menuitem" class="nav-link ms-0 me-10 py-5 {{#isactive}}text-active-primary active{{/isactive}} {{#classes}}{{.}} {{/classes}}"
+                <a role="menuitem" class="nav-link ms-0 me-5 py-3 {{#isactive}}text-active-primary active{{/isactive}} {{#classes}}{{.}} {{/classes}}"
                     href="{{{url}}}{{{action}}}"
                     {{#title}}title="{{.}}"{{/title}}
                     {{#isactive}}aria-current="true"{{/isactive}}

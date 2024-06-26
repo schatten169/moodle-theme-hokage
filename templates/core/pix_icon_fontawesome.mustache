@@ -1,0 +1,10 @@
+{{!
+    Template yang digunakan untuk menampilkan font awesome
+}}
+{{^unmappedIcon}}
+<i class="icon p-0 m-0 fa {{key}} {{extraclasses}}" {{#aria-hidden}}aria-hidden="true"{{/aria-hidden}} {{#title}}title="{{title}}"{{/title}} {{#alt}}role="img" aria-label="{{alt}}"{{/alt}}></i>
+{{/unmappedIcon}}
+{{#unmappedIcon}}
+{{! We cannot include the pix_icon template directly here because we don't have all the mustache helpers loaded. }}
+<img class="icon p-0 m-0 {{extraclasses}}" {{#attributes}}{{name}}="{{value}}" {{/attributes}}/>
+{{/unmappedIcon}}

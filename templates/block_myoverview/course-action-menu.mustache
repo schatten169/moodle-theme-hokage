@@ -1,0 +1,59 @@
+{{!
+    ??
+}}
+<div class="ml-auto dropstart">
+    <button class="btn btn-link btn-icon icon-size-3"
+        type="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        data-kt-menu-attach="parent"
+        data-kt-menu-trigger="click"
+        data-kt-menu-placement="bottom-end"
+        >
+        <i class="fa fa-ellipsis-v" title="{{#str}} aria:courseactions, block_myoverview {{/str}} {{{fullname}}}" aria-hidden="true"></i>
+        <span class="sr-only">{{#str}} aria:courseactions, block_myoverview {{/str}} {{{fullname}}}</span>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item px-3 {{#isfavourite}}hidden{{/isfavourite}}" href="#"
+            data-action="add-favourite"
+            data-course-id="{{id}}"
+            aria-controls="favorite-icon-{{ id }}-{{ uniqid }}"
+            >
+            {{#str}} addtofavourites, block_myoverview {{/str}}
+            <div class="sr-only">
+                {{#str}} aria:addtofavourites, block_myoverview {{/str}} {{{fullname}}}
+            </div>
+        </a>
+        <a class="dropdown-item px-3 {{^isfavourite}}hidden{{/isfavourite}}" href="#"
+            data-action="remove-favourite"
+            data-course-id="{{id}}"
+            aria-controls="favorite-icon-{{ id }}-{{ uniqid }}"
+            >
+            {{#str}} removefromfavourites, block_myoverview {{/str}}
+            <div class="sr-only">
+                {{#str}} aria:removefromfavourites, block_myoverview {{/str}} {{{fullname}}}
+            </div>
+        </a>
+        <a class="dropdown-item px-3 {{^hidden}}hidden{{/hidden}}" href="#"
+            data-action="show-course"
+            data-course-id="{{id}}"
+            aria-controls="favorite-icon-{{ id }}-{{ uniqid }}"
+            >
+            {{#str}} show, block_myoverview {{/str}}
+            <div class="sr-only">
+                {{#str}} aria:showcourse, block_myoverview, {{fullname}} {{/str}}
+            </div>
+        </a>
+        <a class="dropdown-item px-3 {{#hidden}}hidden{{/hidden}}" href="#"
+            data-action="hide-course"
+            data-course-id="{{id}}"
+            aria-controls="favorite-icon-{{ id }}-{{ uniqid }}"
+            >
+            {{#str}} hidecourse, block_myoverview {{/str}}
+            <div class="sr-only">
+                {{#str}} aria:hidecourse, block_myoverview, {{fullname}} {{/str}}
+            </div>
+        </a>
+    </div>
+</div>

@@ -11,14 +11,13 @@ $THEME->yuicssmodules = [];
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';                                                                     
 $THEME->requiredblocks = '';   
 $THEME->addblockposition = BLOCK_ADDBLOCK_POSITION_FLATNAV;
-$THEME->haseditswitch = false;
+$THEME->haseditswitch = true;
 
 $THEME->scss = function($theme) {
      return theme_hokage_get_main_scss_content($theme);
 };
-
 $THEME->layouts = [
-    // // Most backwards compatible layout without the blocks.
+    // Most backwards compatible layout without the blocks.
     // 'base' => array(
     //     'file' => 'drawers.php',
     //     'regions' => array(),
@@ -31,13 +30,13 @@ $THEME->layouts = [
     // ),
     // // Main course page.
     // 'course' => array(
-    //     'file' => 'drawers.php',
+    //     'file' => 'course.php',
     //     'regions' => array('side-pre'),
     //     'defaultregion' => 'side-pre',
     //     'options' => array('langmenu' => true),
     // ),
     // 'coursecategory' => array(
-    //     'file' => 'drawers.php',
+    //     'file' => 'coursecategory.php',
     //     'regions' => array('side-pre'),
     //     'defaultregion' => 'side-pre',
     // ),
@@ -48,12 +47,12 @@ $THEME->layouts = [
     //     'defaultregion' => 'side-pre',
     // ),
     // // The site home page.
-    // 'frontpage' => array(
-    //     'file' => 'frontpage.php',
-    //     'regions' => array('side-pre'),
-    //     'defaultregion' => 'side-pre',
-    //     'options' => array('nonavbar' => true),
-    // ),
+    'frontpage' => array(
+        'file' => 'frontpage.php',
+        'regions' => array('side-pre'),
+        'defaultregion' => 'side-pre',
+        'options' => array('nonavbar' => true),
+    ),
     // // Server administration scripts.
     // 'admin' => array(
     //     'file' => 'drawers.php',
@@ -68,23 +67,23 @@ $THEME->layouts = [
     //     'options' => array('nonavbar' => true),
     // ),
     // // My dashboard page.
-    // 'mydashboard' => [
-    //     'file' => 'mydashboard.php',
-    //     'regions' => ['side-pre', 'side-admin'],
-    //     'defaultregion' => 'side-pre',
-    //     'options' => ['nonavbar' => true, 'langmenu' => true, 'nocontextheader' => true],
-    // ],
+    'mydashboard' => array(
+        'file' => 'mydashboard.php',
+        'regions' => array('side-pre'),
+        'defaultregion' => 'side-pre',
+        'options' => array('nonavbar' => true, 'langmenu' => false),
+    ),
     // // My public page.
     // 'mypublic' => array(
     //     'file' => 'drawers.php',
     //     'regions' => array('side-pre'),
     //     'defaultregion' => 'side-pre',
     // ),
-    // 'login' => array(
-    //     'file' => 'login.php',
-    //     'regions' => array(),
-    //     'options' => array('langmenu' => true),
-    // ),
+    'login' => array(
+        'file' => 'login.php',
+        'regions' => array(),
+        'options' => array('langmenu' => false),
+    ),
 
     // // Pages that appear in pop-up windows - no navigation, no blocks, no header and bare activity header.
     // 'popup' => array(

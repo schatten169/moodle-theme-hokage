@@ -1,0 +1,1 @@
+php "../../admin/cli/purge_caches.php"

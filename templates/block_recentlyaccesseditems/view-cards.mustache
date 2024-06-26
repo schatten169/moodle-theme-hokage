@@ -1,0 +1,30 @@
+{{!
+	???
+}}
+
+<div class="mh-200px overflow-auto" data-region="items-list" role="list">
+    {{#items}}
+        <div class="card m-2 shadow-sm" role="listitem">
+            <a class="mb-1" href="{{{viewurl}}}" title="{{{name}}}">
+                <div class="card-body p-2 m-1">
+                    <div class="d-flex text-truncate">
+                        <div class="d-flex align-self-center activityiconcontainer">
+                            {{{icon}}}
+                        </div>
+                        <div class="w-100 line-height-3 text-truncate ml-2">
+                            <h6 class="mb-0 text-truncate"><span class="clickable">{{{name}}}</span></h6>
+                            <small class="text-truncate mb-0">{{{coursename}}}</small>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {{/items}}
+</div>
+{{#hasmoreitems}}
+    <div data-region="more-items-button-container" class="mt-2 px-1">
+        <button type="button" class="btn btn-secondary btn-sm" data-action="more-items">
+            {{#str}}moreitems, block_recentlyaccesseditems {{/str}}
+        </button>
+    </div>
+{{/hasmoreitems}}

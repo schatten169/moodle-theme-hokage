@@ -1,0 +1,39 @@
+
+{{!
+    Template yang digunakan untuk menampilkan course pada bagian my course
+    dengan tampilan bentuk card.
+}}
+
+{{< core_course/coursecards }}
+    {{$menu}}
+        {{> block_myoverview/course-action-menu }}
+    {{/menu}}
+    {{$progress}}
+        {{#hasprogress}}
+            {{> block_myoverview/progress-bar }}
+        {{/hasprogress}}
+    {{/progress}}
+    {{$coursename}}
+        <span class="multiline" title="{{fullname}}">
+            <span class="sr-only">{{{fullname}}}</span>
+            <span aria-hidden="true">
+                {{#shortentext}}55, {{{fullname}}} {{/shortentext}}
+            </span>
+        </span>
+    {{/coursename}}
+    {{$coursecategory}}
+        {{#showcoursecategory}}
+            <span class="sr-only">
+                {{#str}}aria:coursecategory, core_course{{/str}}
+            </span>
+            <span class="categoryname text-truncate">
+                {{{coursecategory}}}
+            </span>
+        {{/showcoursecategory}}
+    {{/coursecategory}}
+    {{$divider}}
+        {{#showcoursecategory}}
+            <div class="pl-1 pr-1">|</div>
+        {{/showcoursecategory}}
+    {{/divider}}
+{{/ core_course/coursecards }}

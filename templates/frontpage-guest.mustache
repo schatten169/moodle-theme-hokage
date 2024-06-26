@@ -1,0 +1,134 @@
+{{! 
+    # Main Template Layout Home #
+	Template ini digunakan untuk control utama tampilan page Home
+}}
+{{> theme_hokage/head }}
+
+<body id="kt_body" {{{ bodyattributes }}} data-bs-spy="scroll" data-bs-target="#kt_landing_menu">
+{{> core/local/toast/wrapper }}
+
+<div class="d-flex flex-column flex-root">
+    {{> core/dashboard_navbar }}
+
+    <div class="mt-18" id="home">
+        <div class="bgi-no-repeat bgi-size-contain bgi-position-x-center bgi-position-y-bottom landing-dark-bg" style="background-image: url({{{ output.asset_path }}}/media/svg/illustrations/landing.svg)">
+            <div class="d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9">
+                <div class="text-center mb-5 mb-lg-10 py-10 py-lg-20">
+                    <h1 class="text-white lh-base fw-bold fs-2x fs-lg-3x mb-15">Selamat datang di E-Learning
+                    <br />
+                    <span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                        <span id="kt_landing_hero_text">SIAP SETTING</span>
+                    </span></h1>
+                    <a href="{{ output.www_path }}/my" class="btn btn-primary">Masuk ke dashboard saya</a>
+                </div>
+            </div>
+        </div>
+        <div class="landing-curve landing-dark-color mb-10 mb-lg-20">
+            <svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z" fill="currentColor"></path>
+            </svg>
+        </div>
+    </div>
+    <div class="mb-n10 mb-lg-n20 z-index-2">
+        <div class="container">
+            <div class="text-center mb-17">
+                <h3 class="fs-2hx text-dark mb-5" id="how-it-works" data-kt-scroll-offset="{default: 100, lg: 150}">3 Cara Mudah Menggunakan E-Learning</h3>
+                <div class="fs-5 text-muted fw-bold">
+                    Jelajahi berbagai courses yang tersedia<br />
+                    kemudian mulai pelajari
+                </div>
+            </div>
+            <div class="row w-100 gy-10 mb-md-20">
+                <div class="col-md-4 px-5">
+                    <div class="text-center mb-10 mb-md-0">
+                        <img src="{{{ output.asset_path }}}/media/illustrations/sigma-1/2.png" class="mh-125px mb-9" alt="" />
+                        <div class="d-flex flex-center mb-5">
+                            <span class="badge badge-circle badge-light-success fw-bold p-5 me-3 fs-3">1</span>
+                            <div class="fs-5 fs-lg-3 fw-bold text-dark">Cari Course</div>
+                        </div>
+                        <div class="fw-semibold fs-6 fs-lg-4 text-muted">Jelajahi berbagai course
+                        <br />kemudian pilih course yang diinginkan</div>
+                    </div>
+                </div>
+                <div class="col-md-4 px-5">
+                    <div class="text-center mb-10 mb-md-0">
+                        <img src="{{{ output.asset_path }}}/media/illustrations/sigma-1/8.png" class="mh-125px mb-9" alt="" />
+                        <div class="d-flex flex-center mb-5">
+                            <span class="badge badge-circle badge-light-success fw-bold p-5 me-3 fs-3">2</span>
+                            <div class="fs-5 fs-lg-3 fw-bold text-dark">Daftar Ke Courses</div>
+                        </div>
+                        <div class="fw-semibold fs-6 fs-lg-4 text-muted">Masukkan kode untuk bisa mengakses
+                        <br />courses yang Anda inginkan</div>
+                    </div>
+                </div>
+                <div class="col-md-4 px-5">
+                    <div class="text-center mb-10 mb-md-0">
+                        <img src="{{{ output.asset_path }}}/media/illustrations/sigma-1/12.png" class="mh-125px mb-9" alt="" />
+                        <div class="d-flex flex-center mb-5">
+                            <span class="badge badge-circle badge-light-success fw-bold p-5 me-3 fs-3">3</span>
+                            <div class="fs-5 fs-lg-3 fw-bold text-dark">Mulai Pelajari</div>
+                        </div>
+                        <div class="fw-semibold fs-6 fs-lg-4 text-muted">Silakan ikuti panduan yang sudah
+                        <br />tersedia di dalam courses tersebut</div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-stack flex-wrap flex-md-nowrap card-rounded shadow p-8 p-lg-12 mb-n5 mb-lg-n13" style="background: linear-gradient(90deg, #20AA3E 0%, #03A588 100%);">
+                <div class="my-2 me-5">
+                    <div class="fs-1 fs-lg-2qx fw-normal text-white mb-2">
+                        Berbagai courses dan modul
+                        <span class="fw-bold">kini sudah tersedia loh!</span>
+                    </div>
+                    <div class="fs-6 fs-lg-5 text-white fw-semibold opacity-75">Tunggu apa lagi? Yuk mulai belajar sekarang!</div>
+                </div>
+                <a href="{{ output.www_path }}/my/courses" class="btn btn-lg btn-outline border-2 btn-outline-white flex-shrink-0 my-2">Mulai Belajar Sekarang</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mb-0">
+        <div class="landing-curve landing-dark-color">
+            <svg viewBox="15 -1 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 48C4.93573 47.6644 8.85984 47.3311 12.7725 47H1489.16C1493.1 47.3311 1497.04 47.6644 1501 48V47H1489.16C914.668 -1.34764 587.282 -1.61174 12.7725 47H1V48Z" fill="currentColor"></path>
+            </svg>
+        </div>
+        <div class="landing-dark-bg pt-20">
+            <div class="container">
+                {{{ output.main_content }}}
+            </div>
+            <div class="landing-dark-separator"></div>
+            <div class="landing-dark-bg">
+                {{> theme_hokage/footer }}
+            </div>
+        </div>
+    </div>
+
+
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+        <i class="ki-duotone ki-arrow-up">
+            <span class="path1"></span>
+            <span class="path2"></span>
+        </i>
+    </div>
+    
+    {{> theme_hokage/page-loader }}
+
+    <script>var hostUrl = "{{{ output.asset_path }}}/";</script>
+    <script src="{{{ output.asset_path }}}/plugins/jquery/jquery-3.7.1.min.js"></script>
+    <script src="{{{ output.asset_path }}}/plugins/global/plugins.bundle.js"></script>
+    <script src="{{{ output.asset_path }}}/js/scripts.bundle.js"></script>
+    <script src="{{{ output.asset_path }}}/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="{{{ output.asset_path }}}/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="{{{ output.asset_path }}}/js/widgets.bundle.js"></script>
+    <script src="{{{ output.asset_path }}}/js/custom/widgets.js"></script>
+    <script src="{{{ output.asset_path }}}/js/custom/apps/chat/chat.js"></script>
+</body>
+</html>
+
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
+    Drawer.init();
+    M.util.js_complete('theme_boost/loader');
+});
+{{/js}}

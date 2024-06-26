@@ -1,43 +1,86 @@
-
+{{!
+	# Main Template Layout Biasa #
+	Template ini digunakan untuk control utama tampilan dashboard dsb
+    - Mengikuti theme parentnya (boost), template ini digunakan untuk berbagai macam tampilan
+}}
 {{> theme_hokage/head }}
 
-<body id="kt_body" class="header-tablet-and-mobile-fixed aside-enabled">
+<body {{{ bodyattributes }}}>
 
-<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
+    <script href="{{{ output.asset_path }}}/js/custom/setup_theme.js"></script>
+    {{> core/local/toast/wrapper }}
 
-<div class="d-flex flex-column flex-root">
-    <div class="page d-flex flex-row flex-column-fluid">
-        {{> theme_hokage/sidebar }}
+    <div class="d-flex flex-column flex-root">
+        {{^unauthenticateduser}}
+            {{> theme_hokage/sidebar }}
+        {{/unauthenticateduser}}
+
+        <!-- Standard Top of Body HTML [Start] -->
+        {{{ output.standard_top_of_body_html }}}
+        <!-- Standard Top of Body HTML [End] -->
+
+        <div id="kt-wrapper" class="wrapper d-flex flex-column flex-row-fluid {{#unauthenticateduser}} px-0 {{/unauthenticateduser}}">
+
+            {{> theme_hokage/navbar }}
+
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <div class="toolbar d-flex flex-stack" id="kt_toolbar">
+                    <div id="kt_toolbar_container" class="container">
+                        <div class="mb-5">
+                        {{{ output.full_header }}}
+                        </div>
+                        {{#secondarymoremenu}}
+                            <div class="secondary-navigation d-print-none">
+                                {{> core/moremenu }}
+                            </div>
+                        {{/secondarymoremenu}}
+                    </div>
+                </div>
+                <div class="d-flex flex-column-fluid m-0" id="page" data-region="mainpage" data-usertour="scroller">
+                    <div id="kt_content_container" class="container-xxl" id="topofscroll">
+                        <div id="region-main-box">
+                            {{{ output.main_content }}}
+
+                            
+                            {{{ output.activity_navigation }}}
+                            {{{ output.course_content_footer }}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {{> theme_hokage/footer }}
+        </div>
+        
+        <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+            <i class="ki-duotone ki-arrow-up">
+                <span class="path1"></span>
+                <span class="path2"></span>
+            </i>
+        </div>
+
+        <script>var hostUrl = "{{{ output.asset_path }}}/";</script>
+        <script src="{{{ output.asset_path }}}/plugins/jquery/jquery-3.7.1.min.js"></script>
+        <script src="{{{ output.asset_path }}}/plugins/global/plugins.bundle.js"></script>
+        <script src="{{{ output.asset_path }}}/js/scripts.bundle.js"></script>
+        <script src="{{{ output.asset_path }}}/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+        <script src="{{{ output.asset_path }}}/plugins/custom/datatables/datatables.bundle.js"></script>
+        <script src="{{{ output.asset_path }}}/js/widgets.bundle.js"></script>
+        <script src="{{{ output.asset_path }}}/js/custom/widgets.js"></script>
+        <script src="{{{ output.asset_path }}}/js/custom/apps/chat/chat.js"></script>
+        <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/upgrade-plan.js"></script>
+        <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/create-campaign.js"></script>
+        <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/create-app.js"></script>
+        <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/users-search.js"></script>
+
+        {{! Custom Script is here! }}
+        <script src="{{{ output.asset_path }}}/js/custom/main.js"></script>
+
+        <!-- Standar bottom -->
+        {{{ output.standard_after_main_region_html }}}
+        {{{ output.standard_end_of_body_html }}}
+        <!-- end Standar bottom -->
     </div>
-</div>
-
-<div id="kt-wrapper" class="wrapper d-flex flex-column flex-row-fluid">
-
-    <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
-    {{> theme_hokage/navbar }}
-
-    {{{ output.main_content }}}
-    </div>
-    
-    {{> theme_hokage/footer }}
-    </div>
-
-    {{{ output.standard_after_main_region_html }}}
-    
-    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true"></div>
-
-    <script>var hostUrl = "{{{ output.asset_path }}}/";</script>
-    <script src="{{{ output.asset_path }}}/plugins/global/plugins.bundle.js"></script>
-    <script src="{{{ output.asset_path }}}/js/scripts.bundle.js"></script>
-    <script src="{{{ output.asset_path }}}/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
-    <script src="{{{ output.asset_path }}}/plugins/custom/datatables/datatables.bundle.js"></script>
-    <script src="{{{ output.asset_path }}}/js/widgets.bundle.js"></script>
-    <script src="{{{ output.asset_path }}}/js/custom/widgets.js"></script>
-    <script src="{{{ output.asset_path }}}/js/custom/apps/chat/chat.js"></script>
-    <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/create-campaign.js"></script>
-    <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/create-app.js"></script>
-    <script src="{{{ output.asset_path }}}/js/custom/utilities/modals/users-search.js"></script>
 </body>
 </html>
 

@@ -2,6 +2,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+require_login();
+
 require_once($CFG->libdir . '/behat/lib.php');
 require_once($CFG->dirroot . '/course/lib.php');
 
@@ -20,7 +22,7 @@ if (defined('BEHAT_SITE_RUNNING') && get_user_preferences('behat_keep_drawer_clo
     $blockdraweropen = true;
 }
 
-$extraclasses = ['uses-drawers'];
+$extraclasses = ['uses-drawers', 'header-tablet-and-mobile-fixed', 'aside-enabled', 'bg-gray-200', 'position-relative'];
 if ($courseindexopen) {
     $extraclasses[] = 'drawer-open-index';
 }
@@ -59,7 +61,9 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
-
+/* Navbar setting */
+$hasnavbar = empty($this->page->layout_options['nonavbar']);
+/* *** */
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
@@ -80,7 +84,9 @@ $templatecontext = [
     'overflow' => $overflow,
     'headercontent' => $headercontent,
     'addblockbutton' => $addblockbutton,
-    'user' => $USER
+    'hasnavbar' => $hasnavbar,
+    'showeditbutton' => is_siteadmin() ? 'true' : null,
 ];
 
-echo $OUTPUT->render_from_template('theme_hokage/drawers', $templatecontext);
+// var_dump(get_config('block_myoverview')); die();
+echo $OUTPUT->render_from_template('theme_hokage/mydashboard', $templatecontext);

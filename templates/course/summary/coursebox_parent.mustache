@@ -1,0 +1,12 @@
+{{!
+    Template digunakan untuk tampilan course pada halaman home/utama.
+    - Kenapa parent? Karena digunakan untuk menampilkan item carousel, tapi tidak mengatur cardnya.
+    = Parent: Carousel
+    = Child:
+        - Coursebox_Child
+}}
+<div class="{{{ additionalclasses }}}" id="sc_front">
+    <div class="{{{ classes }}}" data-courseid="{{{ courseId }}}" data-type="{{{{ coruseType }}}">
+        {{{ content }}}
+    </div>
+</div>

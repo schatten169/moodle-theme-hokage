@@ -1,0 +1,18 @@
+{{! 
+    Template digunakan untuk tampilan card dari course pada carousel halaman home/utama
+    - Kenapa child? Karena ini mengatur "isi/card" tapi bukan bagian parent item carouselnya
+}}
+<a class="course-card-img" href="{{{ courseUrl }}}" aria-hidden="true" tabindex="-1" aria-label="{{{ courseName }}}">
+    {{{ courseImage }}}
+</a>
+<div class="card-body">
+    <h5 class="card-title mb-5">{{{ courseNameLink }}}</h5>
+    <div class="card-text">
+        {{{ content }}}
+    </div>
+</div>
+<div class="card-footer p-3 text-center">
+    <a class="btn btn-primary btn-sm" href="{{{ courseUrl }}}">
+        {{# str }} summaryseemore, theme_hokage {{/ str }}
+    </a>
+</div>

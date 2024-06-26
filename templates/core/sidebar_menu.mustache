@@ -1,16 +1,18 @@
-
-<div class="w-100 hover-scroll-y d-flex pe-2" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_footer, #kt_header" data-kt-scroll-wrappers="#kt_aside, #kt_aside_menu, #kt_aside_menu_wrapper" data-kt-scroll-offset="102">
-	<div class="menu menu-column menu-rounded menu-sub-indention menu-active-bg fw-semibold me-auto" id="#kt_aside_menu" data-kt-menu="true">
+{{! 
+    Template parent dari sidebar, isinya untuk menampilkan sidebar
+}}
+<nav class="w-100 h-100 d-flex pe-2" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_footer, #kt_header" data-kt-scroll-wrappers="#kt_aside, #kt_aside_menu, #kt_aside_menu_wrapper" data-kt-scroll-offset="102">
+	<ul class="menu menu-column menu-rounded menu-sub-indention menu-active-bg fw-semibold me-auto" id="#kt_aside_menu" data-kt-menu="true">
 		{{#nodecollection}}
             {{#children}}
-                {{>core/sidebar_menu_children}}
+                {{> core/sidebar_menu_children }}
             {{/children}}
         {{/nodecollection}}
         {{#nodearray}}
-            {{>core/sidebar_menu_children}}
+            {{> core/sidebar_menu_children }}
         {{/nodearray}}
-	</div>
-</div>
+	</ul>
+</nav>
 
 {{#js}}
     require(['core/moremenu'], function(moremenu) {

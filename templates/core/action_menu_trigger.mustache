@@ -1,0 +1,34 @@
+{{! 
+    Template untuk pilihan lain/opsi (tiga titik horizontal) berupa dropdown. Biasanya di course (masuk sebagai admin/manager/teacher)
+}}
+<div class="dropdown{{^secondary.items}} hidden{{/secondary.items}}">
+    <button type="button" class="btn btn-sm btn-icon btn-secondary-outline btn-active-light-primary"
+        data-kt-menu-trigger="click"
+        data-kt-menu-placement="bottom-end">
+        <i class="ki-solid ki-dots-vertical fs-2x"></i>
+    </button>
+    {{#secondary}}
+        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-auto py-3" data-kt-menu="true">
+            {{#items}}
+                {{#actionmenulink}}
+                    <div class="menu-item px-3">
+                        {{< core/action_menu_link}}
+                            {{$actionmenulinkclasses}}menu-link px-3{{/actionmenulinkclasses}}
+                        {{/ core/action_menu_link}}
+                    </div>
+                {{/actionmenulink}}
+                {{#actionmenufiller}}
+                    <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
+                {{/actionmenufiller}}
+                {{#subpanel}}
+                    {{> core/local/action_menu/subpanel}}
+                {{/subpanel}}
+                {{#simpleitem}}
+                    <div class="menu-item px-3">
+                        {{> core/action_menu_item }}
+                    </div>
+                {{/simpleitem}}
+            {{/items}}
+        </div>
+    {{/secondary}}
+</div>

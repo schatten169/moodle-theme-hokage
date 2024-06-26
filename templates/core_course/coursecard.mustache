@@ -1,0 +1,47 @@
+
+{{!
+    Template ini digunakan sebagai cetakan isi course dalam bentuk card.
+}}
+<div class="card shadow-sm course-card mx-1" role="listitem"
+    data-region="course-content"
+    data-course-id="{{{id}}}">
+    <a href="{{viewurl}}" tabindex="-1">
+        <img class="card-img-top h-150px object-fit-cover" src="{{{courseimage}}}" >
+        <span class="sr-only">{{fullname}}</span>
+    </a>
+    <div class="card-body p-5 course-info-container" id="course-info-container-{{id}}-{{uniqid}}">
+        <div class="d-flex align-items-start">
+            <div class="w-100 text-truncate">
+                {{#showshortname}}
+                    <div class="text-muted muted d-flex mb-1 flex-wrap">
+                        <span class="sr-only">
+                            {{#str}}aria:courseshortname, core_course{{/str}}
+                        </span>
+                        <div>
+                            {{{shortname}}}
+                        </div>
+                    </div>
+                {{/showshortname}}
+                <a href="{{viewurl}}" class="aalink coursename mr-2 mb-1">
+                    {{> core_course/favouriteicon }}
+                    <span class="sr-only">
+                        {{#str}}aria:coursename, core_course{{/str}}
+                    </span>
+                    {{$coursename}}{{/coursename}}
+                </a>
+                <div class="text-muted muted d-flex flex-wrap">
+                    {{$coursecategory}}{{/coursecategory}}
+                </div>
+                {{^visible}}
+                    <div class="d-flex flex-wrap">
+                        <span class="badge bg-info text-white">{{#str}} hiddenfromstudents {{/str}}</span>
+                    </div>
+                {{/visible}}
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-secondary px-5 py-2 d-flex align-items-center">
+        {{$progress}}{{/progress}}
+        {{$menu}}{{/menu}}
+    </div>
+</div>
